@@ -1,0 +1,17 @@
+version: '3.2'
+
+services:
+  e2e:
+    container_name: e2e
+    depends_on:
+      - app
+    image: cypress/included:9.5.1
+    environment:
+      - CYPRESS_baseUrl=http://app:80
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e
+
+  app:
+    container_name: app
+    image: nginx:latest
